@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 20px;
+        }
+        p{
+            display:inline-block;
+        }
+        p,span{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<div>现在的时间是：<p></p></div>
+<div>距离2017-1-30倒计时:<span></span></div>
+<script>
+    var oP=document.getElementsByTagName('p')[0];
+    var oS=document.getElementsByTagName('span')[0];
+    function toDou(n){
+        return n>=0&& n<10?'0'+n:''+n;
+    }
+    function nowTime(){
+
+        var str1='日一二三四五六';
+        var oDate=new Date();
+        var newOdate=new Date('2017/1/30 00:00:00');
+        var s_s=Math.floor((newOdate-oDate)/1000);
+        var d_d=Math.floor(s_s/86400);
+        s_s%=86400;
+        var h_h=Math.floor(s_s/3600);
+        s_s%=3600;
+        var m_m=Math.floor(s_s/60);
+        s_s%=60;
+        var str2=toDou(d_d)+'天'+toDou(h_h)+':'+toDou(m_m)+':'+toDou(s_s);
+        var y=oDate.getFullYear();
+        var m=oDate.getMonth()+1;
+        var d=oDate.getDate();
+        var h=oDate.getHours();
+        var mm=oDate.getMinutes();
+        var s=oDate.getSeconds();
+        var r=oDate.getDay();
+        var str=y+'年'+m+'月'+d+'日'+','+'今天是星期'+str1.charAt(r) +' '+toDou(h)+':'+toDou(mm)+':'+toDou(s);
+        oP.innerHTML=str;
+        oS.innerHTML=str2;
+//        alert(d);
+    }
+    nowTime();
+    window.setInterval(nowTime,1000);
+</script>
+</body>
+</html>
